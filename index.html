@@ -1,1166 +1,443 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rümeysa Çolak | Diş Hekimi</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --dark: #061114;
-      --dark-2: #0b2025;
-      --cream: #fff7ef;
-      --gold: #e8ad82;
-      --gold-light: #ffe1c7;
-      --cyan: #26c6da;
-      --white: #ffffff;
-      --muted: rgba(255,255,255,.72);
-      --glass: rgba(255,255,255,.09);
-      --border: rgba(255,255,255,.15);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: white;
-      overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(232,173,130,.30), transparent 32%),
-        radial-gradient(circle at 82% 12%, rgba(38,198,218,.25), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(232,173,130,.12), transparent 35%),
-        linear-gradient(180deg, #071416, #0b2025 50%, #061114);
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .06;
-      z-index: -1;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23noise)' opacity='.7'/%3E%3C/svg%3E");
-    }
-
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      padding: 12px 6vw;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(6,17,20,.74);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(18px);
-    }
-
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .logo-area img {
-      width: 70px;
-      height: 70px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 20px rgba(232,173,130,.28));
-    }
-
-    .logo-text strong {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-size: 23px;
-      line-height: 1;
-    }
-
-    .logo-text span {
-      display: block;
-      margin-top: 5px;
-      font-size: 12px;
-      letter-spacing: 2.5px;
-      color: var(--muted);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      font-size: 14px;
-      font-weight: 700;
-      color: rgba(255,255,255,.78);
-      transition: .25s;
-    }
-
-    .nav-links a:hover {
-      color: var(--gold-light);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 15px 23px;
-      border-radius: 999px;
-      border: none;
-      font-weight: 900;
-      cursor: pointer;
-      color: #061114;
-      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--cyan));
-      box-shadow: 0 18px 45px rgba(38,198,218,.22), 0 12px 30px rgba(232,173,130,.18);
-      transition: .28s;
-      white-space: nowrap;
-    }
-
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 24px 55px rgba(38,198,218,.35);
-    }
-
-    .btn-outline {
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--border);
-      color: white;
-      box-shadow: none;
-    }
-
-    section {
-      padding: 95px 6vw;
-    }
-
-    .hero {
-      min-height: 100vh;
-      padding-top: 155px;
-      display: grid;
-      grid-template-columns: 1.08fr .92fr;
-      align-items: center;
-      gap: 55px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 15px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--border);
-      color: var(--gold-light);
-      font-weight: 800;
-      margin-bottom: 24px;
-    }
-
-    .dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 20px var(--cyan);
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(44px, 6vw, 88px);
-      line-height: .98;
-      letter-spacing: -2px;
-      margin-bottom: 24px;
-    }
-
-    .gradient {
-      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--cyan));
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .hero p {
-      max-width: 670px;
-      font-size: 18px;
-      line-height: 1.8;
-      color: var(--muted);
-      margin-bottom: 32px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .hero-card {
-      position: relative;
-      padding: 24px;
-      border-radius: 38px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
-      box-shadow: 0 30px 90px rgba(0,0,0,.40);
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background:
-        radial-gradient(circle at 30% 10%, rgba(232,173,130,.25), transparent 35%),
-        radial-gradient(circle at 80% 20%, rgba(38,198,218,.28), transparent 33%);
-      pointer-events: none;
-    }
-
-    .hero-card img.clinic {
-      position: relative;
-      width: 100%;
-      height: 500px;
-      object-fit: cover;
-      border-radius: 30px;
-    }
-
-    .floating-info {
-      position: absolute;
-      left: 38px;
-      right: 38px;
-      bottom: 38px;
-      padding: 18px;
-      border-radius: 25px;
-      background: rgba(6,17,20,.76);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(16px);
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .floating-info img {
-      width: 88px;
-      height: 62px;
-      object-fit: contain;
-      flex-shrink: 0;
-    }
-
-    .floating-info strong {
-      display: block;
-      font-size: 18px;
-    }
-
-    .floating-info span {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .stats {
-      margin-top: 35px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .stat {
-      padding: 22px;
-      border-radius: 24px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-    }
-
-    .stat b {
-      display: block;
-      font-size: 34px;
-      color: var(--gold-light);
-      margin-bottom: 5px;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .section-title {
-      max-width: 800px;
-      margin: 0 auto 50px;
-      text-align: center;
-    }
-
-    .section-title h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(35px, 4vw, 58px);
-      line-height: 1.05;
-      margin-bottom: 17px;
-    }
-
-    .section-title p {
-      font-size: 17px;
-      line-height: 1.75;
-      color: var(--muted);
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .service-card {
-      min-height: 285px;
-      padding: 28px;
-      border-radius: 32px;
-      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.055));
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-      transition: .3s;
-    }
-
-    .service-card:hover {
-      transform: translateY(-9px);
-      border-color: rgba(255,225,199,.45);
-    }
-
-    .service-card::after {
-      content: "";
-      position: absolute;
-      right: -65px;
-      top: -65px;
-      width: 155px;
-      height: 155px;
-      border-radius: 50%;
-      background: rgba(38,198,218,.12);
-    }
-
-    .icon {
-      width: 58px;
-      height: 58px;
-      border-radius: 20px;
-      display: grid;
-      place-items: center;
-      font-size: 28px;
-      margin-bottom: 22px;
-      background: linear-gradient(135deg, rgba(232,173,130,.24), rgba(38,198,218,.18));
-      border: 1px solid var(--border);
-    }
-
-    .service-card h3 {
-      font-size: 23px;
-      margin-bottom: 13px;
-    }
-
-    .service-card p {
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap: 35px;
-      align-items: center;
-    }
-
-    .about-img {
-      border-radius: 36px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 30px 80px rgba(0,0,0,.35);
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,sans-serif;background:#061114;color:white;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
 
-    .about-img img {
-      width: 100%;
-      height: 570px;
-      object-fit: cover;
-      transition: .6s;
+    body:before{
+      content:"";position:fixed;inset:0;z-index:-2;
+      background:radial-gradient(circle at 15% 10%,rgba(232,173,130,.30),transparent 32%),
+      radial-gradient(circle at 82% 12%,rgba(38,198,218,.25),transparent 30%),
+      linear-gradient(180deg,#071416,#0b2025 55%,#061114);
     }
 
-    .about-img:hover img {
-      transform: scale(1.06);
+    .navbar{
+      position:fixed;top:0;left:0;right:0;z-index:999;
+      padding:12px 6vw;display:flex;align-items:center;justify-content:space-between;
+      background:rgba(6,17,20,.78);border-bottom:1px solid rgba(255,255,255,.15);
+      backdrop-filter:blur(18px);
     }
 
-    .about-content {
-      padding: 38px;
-      border-radius: 36px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--border);
-    }
-
-    .about-content h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 52px;
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
-
-    .about-content p {
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 18px;
-    }
-
-    .feature-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 25px;
-    }
-
-    .feature {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.86);
-      font-weight: 700;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 22px;
-    }
-
-    .gallery-main,
-    .gallery-side div {
-      border-radius: 34px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 28px 75px rgba(0,0,0,.35);
-    }
-
-    .gallery-main {
-      height: 590px;
-    }
+    .logo-area{display:flex;align-items:center;gap:12px}
+    .logo-area img{width:70px;height:70px;object-fit:contain}
+    .logo-text strong{font-family:'Playfair Display',serif;font-size:24px}
+    .logo-text span{display:block;margin-top:5px;font-size:12px;letter-spacing:2.5px;color:rgba(255,255,255,.7)}
 
-    .gallery-side {
-      display: grid;
-      gap: 22px;
-    }
+    .nav-links{display:flex;gap:22px}
+    .nav-links a{font-size:14px;font-weight:800;color:rgba(255,255,255,.75)}
+    .nav-links a:hover{color:#ffe1c7}
 
-    .gallery-side div {
-      height: 284px;
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:15px 24px;border-radius:999px;font-weight:900;
+      background:linear-gradient(135deg,#ffe1c7,#e8ad82,#26c6da);
+      color:#061114;box-shadow:0 18px 45px rgba(38,198,218,.22);
     }
 
-    .gallery img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: .55s;
+    .btn-outline{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+      color:white;box-shadow:none;
     }
 
-    .gallery-main:hover img,
-    .gallery-side div:hover img {
-      transform: scale(1.06);
-    }
+    section{padding:95px 6vw}
 
-    .reviews {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+    .hero{
+      min-height:100vh;padding-top:155px;
+      display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:55px;
     }
 
-    .review {
-      padding: 28px;
-      border-radius: 30px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--border);
+    .badge{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 16px;border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);
+      color:#ffe1c7;font-weight:900;margin-bottom:24px;
     }
 
-    .stars {
-      color: var(--gold-light);
-      letter-spacing: 2px;
-      margin-bottom: 16px;
-      font-size: 20px;
-    }
+    .dot{width:10px;height:10px;border-radius:50%;background:#26c6da;box-shadow:0 0 20px #26c6da}
 
-    .review p {
-      color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 18px;
+    h1{
+      font-family:'Playfair Display',serif;
+      font-size:clamp(44px,6vw,86px);
+      line-height:.98;letter-spacing:-2px;margin-bottom:24px;
     }
 
-    .review strong {
-      color: white;
+    .gradient{
+      background:linear-gradient(135deg,#ffe1c7,#e8ad82,#26c6da);
+      -webkit-background-clip:text;color:transparent;
     }
 
-    .appointment {
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 28px;
-      align-items: stretch;
+    .hero p,.section-title p,.about-content p,.service-card p,.review p,.appointment-info p{
+      color:rgba(255,255,255,.72);line-height:1.8;font-size:17px;
     }
 
-    .appointment-info {
-      padding: 38px;
-      border-radius: 36px;
-      background: linear-gradient(145deg, rgba(232,173,130,.17), rgba(38,198,218,.12));
-      border: 1px solid var(--border);
-      box-shadow: 0 30px 85px rgba(0,0,0,.34);
-    }
+    .hero p{max-width:680px;font-size:19px;margin-bottom:32px}
 
-    .appointment-info h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 50px;
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
+    .hero-buttons{display:flex;gap:14px;flex-wrap:wrap}
 
-    .appointment-info p {
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 20px;
+    .hero-card{
+      position:relative;padding:24px;border-radius:38px;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.09);
+      box-shadow:0 30px 90px rgba(0,0,0,.4);
     }
 
-    .appointment-info ul {
-      list-style: none;
-      display: grid;
-      gap: 12px;
-      margin: 25px 0;
-    }
+    .hero-card img.clinic{width:100%;height:500px;object-fit:cover;border-radius:30px}
 
-    .appointment-info li {
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.86);
-      font-weight: 700;
+    .floating-info{
+      position:absolute;left:38px;right:38px;bottom:38px;
+      padding:18px;border-radius:25px;background:rgba(6,17,20,.78);
+      border:1px solid rgba(255,255,255,.15);display:flex;gap:16px;align-items:center;
+      backdrop-filter:blur(16px);
     }
 
-    form {
-      padding: 32px;
-      border-radius: 36px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(15px);
-      display: grid;
-      gap: 15px;
-    }
+    .floating-info img{width:85px;height:60px;object-fit:contain}
+    .floating-info strong{font-size:18px}
+    .floating-info span{font-size:13px;color:rgba(255,255,255,.65)}
 
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
+    .stats{margin-top:35px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .stat{padding:22px;border-radius:24px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15)}
+    .stat b{display:block;font-size:34px;color:#ffe1c7}
+    .stat span{color:rgba(255,255,255,.65);font-size:14px}
 
-    input,
-    select,
-    textarea {
-      width: 100%;
-      padding: 17px 18px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.08);
-      outline: none;
-      color: white;
-      font: inherit;
-    }
+    .section-title{text-align:center;max-width:800px;margin:0 auto 50px}
+    .section-title h2{font-family:'Playfair Display',serif;font-size:clamp(35px,4vw,58px);margin-bottom:16px}
 
-    textarea {
-      min-height: 125px;
-      resize: vertical;
-    }
+    .services,.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 
-    input::placeholder,
-    textarea::placeholder {
-      color: rgba(255,255,255,.55);
+    .service-card,.review,.about-content,.appointment-info,.contact-card,form{
+      padding:28px;border-radius:32px;background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.15);
     }
 
-    select option {
-      color: #061114;
+    .icon{
+      width:58px;height:58px;border-radius:20px;display:grid;place-items:center;
+      font-size:28px;margin-bottom:22px;background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.14);
     }
 
-    .contact {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 24px;
-    }
+    .service-card h3{font-size:23px;margin-bottom:13px}
 
-    .contact-card {
-      padding: 32px;
-      border-radius: 36px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid var(--border);
-    }
+    .about,.appointment,.contact{display:grid;grid-template-columns:.95fr 1.05fr;gap:30px;align-items:center}
+    .about-img{border-radius:36px;overflow:hidden;border:1px solid rgba(255,255,255,.15)}
+    .about-img img{width:100%;height:560px;object-fit:cover}
 
-    .contact-card h3 {
-      font-size: 30px;
-      margin-bottom: 20px;
+    .about-content h2,.appointment-info h2{
+      font-family:'Playfair Display',serif;font-size:50px;line-height:1.05;margin-bottom:20px;
     }
 
-    .contact-item {
-      padding: 18px 0;
-      border-bottom: 1px solid rgba(255,255,255,.12);
-      color: var(--muted);
-      line-height: 1.6;
+    .feature-list,.appointment-info ul{display:grid;gap:12px;margin-top:24px;list-style:none}
+    .feature,.appointment-info li{
+      padding:14px;border-radius:18px;background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);font-weight:800;color:rgba(255,255,255,.86);
     }
 
-    .contact-item strong {
-      display: block;
-      color: white;
-      margin-bottom: 6px;
-    }
+    .gallery{display:grid;grid-template-columns:1.2fr .8fr;gap:22px}
+    .gallery-main{height:590px;border-radius:34px;overflow:hidden}
+    .gallery-side{display:grid;gap:22px}
+    .gallery-side div{height:284px;border-radius:34px;overflow:hidden}
+    .gallery img{width:100%;height:100%;object-fit:cover}
 
-    iframe {
-      width: 100%;
-      height: 465px;
-      border: none;
-      border-radius: 36px;
-      box-shadow: 0 28px 80px rgba(0,0,0,.36);
-    }
+    .stars{color:#ffe1c7;letter-spacing:2px;margin-bottom:16px;font-size:20px}
 
-    footer {
-      text-align: center;
-      padding: 38px 6vw 95px;
-      border-top: 1px solid var(--border);
-      color: rgba(255,255,255,.58);
-    }
+    form{display:grid;gap:15px}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
 
-    .whatsapp-fixed {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 1000;
-      width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #25D366;
-      color: white;
-      font-size: 35px;
-      box-shadow: 0 18px 45px rgba(37,211,102,.38);
-      transition: .25s;
+    input,select,textarea{
+      width:100%;padding:17px 18px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);color:white;font:inherit;outline:none;
     }
 
-    .whatsapp-fixed:hover {
-      transform: translateY(-5px) scale(1.05);
-    }
+    textarea{min-height:125px;resize:vertical}
+    input::placeholder,textarea::placeholder{color:rgba(255,255,255,.55)}
+    select option{color:#061114}
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(38px);
-      transition: 1s cubic-bezier(.2,.8,.2,1);
-    }
+    .contact-card h3{font-size:30px;margin-bottom:20px}
+    .contact-item{padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.72);line-height:1.6}
+    .contact-item strong{display:block;color:white;margin-bottom:6px}
 
-    .reveal.left {
-      transform: translateX(-60px);
-    }
+    iframe{width:100%;height:465px;border:0;border-radius:36px}
 
-    .reveal.right {
-      transform: translateX(60px);
-    }
+    footer{text-align:center;padding:38px 6vw 95px;border-top:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.55)}
 
-    .reveal.show {
-      opacity: 1;
-      transform: translate(0,0);
+    .whatsapp-fixed{
+      position:fixed;right:22px;bottom:22px;z-index:1000;width:68px;height:68px;
+      border-radius:50%;display:grid;place-items:center;background:#25D366;
+      color:white;font-size:34px;box-shadow:0 18px 45px rgba(37,211,102,.38);
     }
 
-    @media (max-width: 1050px) {
-      .hero,
-      .about,
-      .appointment,
-      .contact,
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .services,
-      .reviews {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
+    @media(max-width:1050px){
+      .hero,.about,.appointment,.contact,.gallery{grid-template-columns:1fr}
+      .services,.reviews{grid-template-columns:1fr 1fr}
+      .nav-links{display:none}
     }
 
-    @media (max-width: 650px) {
-      section {
-        padding: 72px 5vw;
-      }
-
-      .navbar {
-        padding: 10px 4vw;
-      }
-
-      .logo-area img {
-        width: 58px;
-        height: 58px;
-      }
-
-      .logo-text strong {
-        font-size: 18px;
-      }
-
-      .logo-text span {
-        font-size: 10px;
-        letter-spacing: 1.7px;
-      }
-
-      .navbar .btn {
-        display: none;
-      }
-
-      .hero {
-        padding-top: 120px;
-      }
-
-      .hero-card img.clinic {
-        height: 370px;
-      }
-
-      .floating-info {
-        left: 15px;
-        right: 15px;
-        bottom: 15px;
-      }
-
-      .floating-info img {
-        width: 72px;
-      }
-
-      .stats,
-      .services,
-      .reviews,
-      .row {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-buttons .btn {
-        width: 100%;
-      }
-
-      .about-img img,
-      .gallery-main,
-      .gallery-side div {
-        height: 320px;
-      }
-
-      .about-content,
-      .appointment-info,
-      form,
-      .contact-card {
-        padding: 25px;
-      }
-
-      .about-content h2,
-      .appointment-info h2 {
-        font-size: 36px;
-      }
-
-      iframe {
-        height: 360px;
-      }
-
-      .whatsapp-fixed {
-        width: 60px;
-        height: 60px;
-        right: 16px;
-        bottom: 16px;
-      }
+    @media(max-width:650px){
+      section{padding:72px 5vw}
+      .navbar{padding:10px 4vw}
+      .logo-area img{width:58px;height:58px}
+      .logo-text strong{font-size:18px}
+      .logo-text span{font-size:10px}
+      .navbar .btn{display:none}
+      .hero{padding-top:120px}
+      .hero-card img.clinic{height:370px}
+      .floating-info{left:15px;right:15px;bottom:15px}
+      .stats,.services,.reviews,.row{grid-template-columns:1fr}
+      .hero-buttons .btn{width:100%}
+      .about-img img,.gallery-main,.gallery-side div{height:320px}
+      .about-content h2,.appointment-info h2{font-size:36px}
+      iframe{height:360px}
     }
   </style>
 </head>
 
 <body>
-  <div class="noise"></div>
 
-  <nav class="navbar">
-    <a href="#anasayfa" class="logo-area">
-      <img src="logo.png" alt="Rümeysa Çolak Diş Hekimi Logo">
-      <div class="logo-text">
-        <strong>Rümeysa Çolak</strong>
-        <span>DİŞ HEKİMİ</span>
-      </div>
-    </a>
-
-    <div class="nav-links">
-      <a href="#hakkimizda">Hakkında</a>
-      <a href="#hizmetler">Hizmetler</a>
-      <a href="#klinik">Klinik</a>
-      <a href="#yorumlar">Yorumlar</a>
-      <a href="#randevu">Randevu</a>
-      <a href="#iletisim">İletişim</a>
+<nav class="navbar">
+  <a href="#anasayfa" class="logo-area">
+    <img src="logo.png" alt="Rümeysa Çolak Logo">
+    <div class="logo-text">
+      <strong>Rümeysa Çolak</strong>
+      <span>DİŞ HEKİMİ</span>
     </div>
-
-    <a href="#randevu" class="btn">Randevu Al</a>
-  </nav>
-
-  <main>
-    <section class="hero" id="anasayfa">
-      <div class="reveal left">
-        <div class="badge">
-          <span class="dot"></span>
-          Dörtyol / Hatay Premium Diş Kliniği
-        </div>
-
-        <h1>
-          Sağlıklı ve estetik <span class="gradient">gülüşler</span> için modern klinik deneyimi.
-        </h1>
-
-        <p>
-          Rümeysa Çolak Diş Hekimi kliniği için hazırlanmış modern, premium ve güven veren web sitesi tasarımı.
-          Randevu sistemi, sabit WhatsApp butonu, harita, klinik görselleri ve yumuşak geçiş animasyonlarıyla
-          müşterinin profesyonel hizmet algısını güçlendirir.
-        </p>
-
-        <div class="hero-buttons">
-          <a href="#randevu" class="btn">Online Randevu Oluştur</a>
-          <a href="https://wa.me/905431966778?text=Merhaba%2C%20R%C3%BCmeysa%20%C3%87olak%20Di%C5%9F%20Hekimi%20klini%C4%9Finizden%20randevu%20almak%20istiyorum.%20Uygun%20g%C3%BCn%20ve%20saat%20bilgisi%20alabilir%20miyim%3F" target="_blank" class="btn btn-outline">
-            WhatsApp’tan Yaz
-          </a>
-        </div>
-
-        <div class="stats">
-          <div class="stat">
-            <b>29</b>
-            <span>5 yıldızlı memnuniyet</span>
-          </div>
-          <div class="stat">
-            <b>5★</b>
-            <span>Hasta odaklı deneyim</span>
-          </div>
-          <div class="stat">
-            <b>100%</b>
-            <span>Mobil uyumlu yapı</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-card reveal right">
-        <img class="clinic" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1300&q=90" alt="Modern diş kliniği">
-        <div class="floating-info">
-          <img src="logo.png" alt="Logo">
-          <div>
-            <strong>Rümeysa Çolak</strong>
-            <span>Diş Hekimi • Modern Klinik</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="hakkimizda">
-      <div class="about">
-        <div class="about-img reveal left">
-          <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1200&q=90" alt="Diş kliniği">
-        </div>
-
-        <div class="about-content reveal right">
-          <div class="badge">
-            <span class="dot"></span>
-            Klinik Yaklaşımı
-          </div>
-
-          <h2>Güven veren, şık ve hasta dostu klinik algısı.</h2>
-
-          <p>
-            Bu tasarımda amaç yalnızca güzel görünmek değil; hastaya güven vermek, kliniği profesyonel göstermek
-            ve ziyaretçiyi kolayca randevu almaya yönlendirmektir.
-          </p>
-
-          <p>
-            Rose gold ve turkuaz renkleri logoyla uyumlu kullanıldı. Koyu premium arka plan, logonun daha güçlü
-            ve şık görünmesini sağlar.
-          </p>
-
-          <div class="feature-list">
-            <div class="feature">✓ Mobil, tablet ve bilgisayar uyumlu</div>
-            <div class="feature">✓ WhatsApp randevu yönlendirmesi</div>
-            <div class="feature">✓ Harita ve adres bölümü</div>
-            <div class="feature">✓ Sağdan soldan yumuşak geçiş animasyonları</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="hizmetler">
-      <div class="section-title reveal">
-        <h2>Hizmetler</h2>
-        <p>
-          Diş kliniği sitesinde müşteriye güven veren, net ve profesyonel hizmet kartları.
-        </p>
-      </div>
-
-      <div class="services">
-        <div class="service-card reveal left">
-          <div class="icon">🦷</div>
-          <h3>Genel Diş Muayenesi</h3>
-          <p>Ağız ve diş sağlığı için detaylı değerlendirme, kontrol ve kişiye özel yönlendirme.</p>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="icon">✨</div>
-          <h3>Estetik Diş Hekimliği</h3>
-          <p>Doğal, temiz ve estetik gülüş görünümü için modern tedavi yaklaşımı.</p>
-        </div>
-
-        <div class="service-card reveal right">
-          <div class="icon">💎</div>
-          <h3>Diş Beyazlatma</h3>
-          <p>Daha parlak ve bakımlı bir gülüş için profesyonel beyazlatma çözümleri.</p>
-        </div>
-
-        <div class="service-card reveal left">
-          <div class="icon">🌿</div>
-          <h3>Diş Taşı Temizliği</h3>
-          <p>Ağız hijyenini destekleyen, ferah ve temiz his bırakan bakım uygulamaları.</p>
-        </div>
-
-        <div class="service-card reveal">
-          <div class="icon">👑</div>
-          <h3>Kaplama & Restorasyon</h3>
-          <p>Diş formunu, görünümünü ve fonksiyonunu destekleyen estetik çözümler.</p>
-        </div>
-
-        <div class="service-card reveal right">
-          <div class="icon">⚡</div>
-          <h3>Acil Randevu</h3>
-          <p>Ağrı, hassasiyet veya acil durumlarda hızlı iletişim ve randevu talebi.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="klinik">
-      <div class="section-title reveal">
-        <h2>Modern Klinik Atmosferi</h2>
-        <p>
-          Ferah, temiz, güven veren ve premium hissettiren klinik görselleri.
-        </p>
-      </div>
-
-      <div class="gallery">
-        <div class="gallery-main reveal left">
-          <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1300&q=90" alt="Modern klinik">
-        </div>
-
-        <div class="gallery-side">
-          <div class="reveal right">
-            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=90" alt="Diş hekimi tedavi">
-          </div>
-
-          <div class="reveal right">
-            <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=900&q=90" alt="Diş sağlığı">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="yorumlar">
-      <div class="section-title reveal">
-        <h2>Hasta Memnuniyeti</h2>
-        <p>
-          29 değerlendirme ve 5 yıldız algısını güçlendiren yorum alanı.
-        </p>
-      </div>
-
-      <div class="reviews">
-        <div class="review reveal left">
-          <div class="stars">★★★★★</div>
-          <p>“Klinik çok temiz, iletişim çok ilgiliydi. Randevu süreci hızlı ve rahattı.”</p>
-          <strong>Hasta Yorumu</strong>
-        </div>
-
-        <div class="review reveal">
-          <div class="stars">★★★★★</div>
-          <p>“Hem açıklayıcı hem de güven veren bir yaklaşım vardı. Çok memnun kaldım.”</p>
-          <strong>Hasta Yorumu</strong>
-        </div>
-
-        <div class="review reveal right">
-          <div class="stars">★★★★★</div>
-          <p>“Modern, düzenli ve profesyonel bir klinik izlenimi veriyor. Tavsiye ederim.”</p>
-          <strong>Hasta Yorumu</strong>
-        </div>
-      </div>
-    </section>
-
-    <section id="randevu">
-      <div class="appointment">
-        <div class="appointment-info reveal left">
-          <div class="badge">
-            <span class="dot"></span>
-            Randevu Sistemi
-          </div>
-
-          <h2>Formu doldur, WhatsApp’a hazır mesaj olarak gönder.</h2>
-
-          <p>
-            Bu sistemde ziyaretçi bilgilerini girer. Butona basınca bilgiler otomatik olarak WhatsApp mesajına
-            dönüşür ve direkt senin numarana gider.
-          </p>
-
-          <ul>
-            <li>✓ Ad soyad otomatik mesaja eklenir</li>
-            <li>✓ Telefon numarası otomatik mesaja eklenir</li>
-            <li>✓ Hizmet seçimi otomatik gider</li>
-            <li>✓ Tarih ve not bilgisi WhatsApp’a düşer</li>
-          </ul>
-
-          <a class="btn" target="_blank" href="https://wa.me/905431966778?text=Merhaba%2C%20R%C3%BCmeysa%20%C3%87olak%20Di%C5%9F%20Hekimi%20klini%C4%9Finizden%20randevu%20almak%20istiyorum.%20Uygun%20g%C3%BCn%20ve%20saat%20bilgisi%20alabilir%20miyim%3F">
-            Direkt WhatsApp Randevu
-          </a>
-        </div>
-
-        <form id="appointmentForm" class="reveal right">
-          <div class="row">
-            <input id="name" type="text" placeholder="Ad Soyad" required>
-            <input id="phone" type="tel" placeholder="Telefon Numaranız" required>
-          </div>
-
-          <div class="row">
-            <select id="service" required>
-              <option value="">Hizmet Seçiniz</option>
-              <option>Genel Diş Muayenesi</option>
-              <option>Estetik Diş Hekimliği</option>
-              <option>Diş Beyazlatma</option>
-              <option>Diş Taşı Temizliği</option>
-              <option>Acil Randevu</option>
-            </select>
-
-            <input id="date" type="date" required>
-          </div>
-
-          <textarea id="note" placeholder="Kısaca notunuz"></textarea>
-
-          <button class="btn" type="submit">
-            Randevu Talebini WhatsApp’a Gönder
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <section id="iletisim">
-      <div class="section-title reveal">
-        <h2>Konum ve İletişim</h2>
-        <p>
-          Adrese göre harita ve sabit WhatsApp butonu hazır.
-        </p>
-      </div>
-
-      <div class="contact">
-        <div class="contact-card reveal left">
-          <h3>Rümeysa Çolak</h3>
-
-          <div class="contact-item">
-            <strong>Uzmanlık</strong>
-            Diş Hekimi
-          </div>
-
-          <div class="contact-item">
-            <strong>Telefon / WhatsApp</strong>
-            0543 196 67 78
-          </div>
-
-          <div class="contact-item">
-            <strong>Adres</strong>
-            Hacı Bayram Türkoğlu Blv. 1, 31600 Dörtyol/Hatay, Türkiye
-          </div>
-
-          <div class="contact-item">
-            <strong>Memnuniyet</strong>
-            29 değerlendirme • 5 yıldız
-          </div>
-
-          <br>
-
-          <a class="btn" target="_blank" href="https://wa.me/905431966778?text=Merhaba%2C%20R%C3%BCmeysa%20%C3%87olak%20Di%C5%9F%20Hekimi%20klini%C4%9Finizden%20randevu%20almak%20istiyorum.%20Uygun%20g%C3%BCn%20ve%20saat%20bilgisi%20alabilir%20miyim%3F">
-            WhatsApp ile İletişime Geç
-          </a>
-        </div>
-
-        <div class="reveal right">
-          <iframe
-            src="https://www.google.com/maps?q=Hac%C4%B1%20Bayram%20T%C3%BCrko%C4%9Flu%20Blv.%201%2C%2031600%20D%C3%B6rtyol%2FHatay%2C%20T%C3%BCrkiye&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © 2026 Rümeysa Çolak Diş Hekimi. Tüm hakları saklıdır.
-  </footer>
-
-  <a
-    class="whatsapp-fixed"
-    target="_blank"
-    href="https://wa.me/905431966778?text=Merhaba%2C%20R%C3%BCmeysa%20%C3%87olak%20Di%C5%9F%20Hekimi%20klini%C4%9Finizden%20randevu%20almak%20istiyorum.%20Uygun%20g%C3%BCn%20ve%20saat%20bilgisi%20alabilir%20miyim%3F"
-    aria-label="WhatsApp">
-    ☎
   </a>
 
-  <script>
-    const revealElements = document.querySelectorAll(".reveal");
+  <div class="nav-links">
+    <a href="#hakkimizda">Hakkında</a>
+    <a href="#hizmetler">Hizmetler</a>
+    <a href="#klinik">Klinik</a>
+    <a href="#yorumlar">Yorumlar</a>
+    <a href="#randevu">Randevu</a>
+    <a href="#iletisim">İletişim</a>
+  </div>
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    }, {
-      threshold: 0.15
-    });
+  <a href="#randevu" class="btn">Randevu Al</a>
+</nav>
 
-    revealElements.forEach((element) => observer.observe(element));
+<main>
 
-    const form = document.getElementById("appointmentForm");
+<section class="hero" id="anasayfa">
+  <div>
+    <div class="badge"><span class="dot"></span>Dörtyol / Hatay Diş Hekimi</div>
 
-    form.addEventListener("submit", function(e) {
-      e.preventDefault();
+    <h1>Sağlıklı ve estetik <span class="gradient">gülüşler</span> için modern diş hekimliği.</h1>
 
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const service = document.getElementById("service").value;
-      const date = document.getElementById("date").value;
-      const note = document.getElementById("note").value.trim();
+    <p>
+      Rümeysa Çolak Diş Hekimi; ağız ve diş sağlığı alanında güven veren, hasta odaklı ve modern bir klinik yaklaşımı sunar.
+      Genel diş muayenesi, diş beyazlatma, diş taşı temizliği, estetik diş hekimliği ve acil randevu talepleriniz için kolayca iletişime geçebilirsiniz.
+    </p>
 
-      const message =
-        "Merhaba, Rümeysa Çolak Diş Hekimi kliniğinizden randevu almak istiyorum.%0A%0A" +
-        "Ad Soyad: " + encodeURIComponent(name) + "%0A" +
-        "Telefon: " + encodeURIComponent(phone) + "%0A" +
-        "Hizmet: " + encodeURIComponent(service) + "%0A" +
-        "Tercih Edilen Tarih: " + encodeURIComponent(date) + "%0A" +
-        "Not: " + encodeURIComponent(note || "Belirtilmedi");
+    <div class="hero-buttons">
+      <a href="#randevu" class="btn">Online Randevu Oluştur</a>
+      <a href="https://wa.me/905431966778" target="_blank" class="btn btn-outline">WhatsApp’tan Yaz</a>
+    </div>
 
-      window.open("https://wa.me/905431966778?text=" + message, "_blank");
-    });
-  </script>
+    <div class="stats">
+      <div class="stat"><b>29</b><span>Hasta değerlendirmesi</span></div>
+      <div class="stat"><b>5★</b><span>Memnuniyet puanı</span></div>
+      <div class="stat"><b>100%</b><span>Hasta odaklı yaklaşım</span></div>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <img class="clinic" src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1300&q=90" alt="Diş kliniği">
+    <div class="floating-info">
+      <img src="logo.png" alt="Logo">
+      <div>
+        <strong>Rümeysa Çolak</strong>
+        <span>Diş Hekimi • Dörtyol / Hatay</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hakkimizda">
+  <div class="about">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=1200&q=90" alt="Diş hekimi kliniği">
+    </div>
+
+    <div class="about-content">
+      <div class="badge"><span class="dot"></span>Klinik Yaklaşımı</div>
+      <h2>Güven veren, temiz ve hasta dostu klinik deneyimi.</h2>
+
+      <p>
+        Rümeysa Çolak Diş Hekimi kliniğinde amaç; hastaların kendini rahat hissettiği, açıklayıcı bilgilendirme aldığı
+        ve ağız-diş sağlığı sürecini güvenle takip edebildiği bir hizmet sunmaktır.
+      </p>
+
+      <p>
+        Tedavi sürecinde hastanın ihtiyacı dinlenir, uygun yönlendirme yapılır ve randevu süreci kolay iletişimle ilerler.
+      </p>
+
+      <div class="feature-list">
+        <div class="feature">✓ Hasta odaklı muayene süreci</div>
+        <div class="feature">✓ Modern ve temiz klinik ortamı</div>
+        <div class="feature">✓ WhatsApp üzerinden kolay randevu</div>
+        <div class="feature">✓ Dörtyol / Hatay konumunda ulaşılabilir hizmet</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hizmetler">
+  <div class="section-title">
+    <h2>Hizmetler</h2>
+    <p>Ağız ve diş sağlığınız için sunulan başlıca hizmetler.</p>
+  </div>
+
+  <div class="services">
+    <div class="service-card"><div class="icon">🦷</div><h3>Genel Diş Muayenesi</h3><p>Ağız ve diş sağlığının genel kontrolü, değerlendirme ve gerekli yönlendirme.</p></div>
+    <div class="service-card"><div class="icon">✨</div><h3>Estetik Diş Hekimliği</h3><p>Daha doğal, estetik ve sağlıklı bir gülüş görünümü için kişiye özel yaklaşım.</p></div>
+    <div class="service-card"><div class="icon">💎</div><h3>Diş Beyazlatma</h3><p>Daha parlak ve temiz bir gülüş görünümü için profesyonel beyazlatma işlemleri.</p></div>
+    <div class="service-card"><div class="icon">🌿</div><h3>Diş Taşı Temizliği</h3><p>Ağız hijyenini destekleyen, ferah ve temiz his bırakan bakım uygulaması.</p></div>
+    <div class="service-card"><div class="icon">👑</div><h3>Kaplama & Restorasyon</h3><p>Diş formunu, görünümünü ve fonksiyonunu destekleyen tedavi çözümleri.</p></div>
+    <div class="service-card"><div class="icon">⚡</div><h3>Acil Randevu</h3><p>Ağrı, hassasiyet veya acil durumlarda hızlı iletişim ve randevu talebi.</p></div>
+  </div>
+</section>
+
+<section id="klinik">
+  <div class="section-title">
+    <h2>Klinik Atmosferi</h2>
+    <p>Temiz, ferah ve güven veren bir diş kliniği ortamı.</p>
+  </div>
+
+  <div class="gallery">
+    <div class="gallery-main">
+      <img src="https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&w=1300&q=90" alt="Modern diş kliniği">
+    </div>
+    <div class="gallery-side">
+      <div><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=900&q=90" alt="Diş tedavisi"></div>
+      <div><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=900&q=90" alt="Diş sağlığı"></div>
+    </div>
+  </div>
+</section>
+
+<section id="yorumlar">
+  <div class="section-title">
+    <h2>Hasta Memnuniyeti</h2>
+    <p>Hastaların güveni ve memnuniyeti ön plandadır.</p>
+  </div>
+
+  <div class="reviews">
+    <div class="review"><div class="stars">★★★★★</div><p>“Klinik çok temizdi, iletişim ilgiliydi. Randevu süreci rahat ilerledi.”</p><strong>Hasta Yorumu</strong></div>
+    <div class="review"><div class="stars">★★★★★</div><p>“Açıklayıcı ve güven veren bir yaklaşım vardı. Çok memnun kaldım.”</p><strong>Hasta Yorumu</strong></div>
+    <div class="review"><div class="stars">★★★★★</div><p>“Düzenli, modern ve profesyonel bir klinik ortamı vardı.”</p><strong>Hasta Yorumu</strong></div>
+  </div>
+</section>
+
+<section id="randevu">
+  <div class="appointment">
+    <div class="appointment-info">
+      <div class="badge"><span class="dot"></span>Randevu</div>
+      <h2>Randevu talebinizi kolayca iletin.</h2>
+
+      <p>
+        Formu doldurduğunuzda bilgileriniz WhatsApp mesajı olarak hazırlanır.
+        Böylece randevu talebinizi hızlıca kliniğe iletebilirsiniz.
+      </p>
+
+      <ul>
+        <li>✓ Ad soyad bilgisi</li>
+        <li>✓ Telefon numarası</li>
+        <li>✓ Hizmet seçimi</li>
+        <li>✓ Tercih edilen tarih ve not</li>
+      </ul>
+
+      <a class="btn" target="_blank" href="https://wa.me/905431966778">WhatsApp Randevu</a>
+    </div>
+
+    <form id="appointmentForm">
+      <div class="row">
+        <input id="name" type="text" placeholder="Ad Soyad" required>
+        <input id="phone" type="tel" placeholder="Telefon Numaranız" required>
+      </div>
+
+      <div class="row">
+        <select id="service" required>
+          <option value="">Hizmet Seçiniz</option>
+          <option>Genel Diş Muayenesi</option>
+          <option>Estetik Diş Hekimliği</option>
+          <option>Diş Beyazlatma</option>
+          <option>Diş Taşı Temizliği</option>
+          <option>Acil Randevu</option>
+        </select>
+        <input id="date" type="date" required>
+      </div>
+
+      <textarea id="note" placeholder="Kısaca notunuz"></textarea>
+
+      <button class="btn" type="submit">Randevu Talebini WhatsApp’a Gönder</button>
+    </form>
+  </div>
+</section>
+
+<section id="iletisim">
+  <div class="section-title">
+    <h2>Konum ve İletişim</h2>
+    <p>Randevu ve bilgi almak için WhatsApp üzerinden iletişime geçebilirsiniz.</p>
+  </div>
+
+  <div class="contact">
+    <div class="contact-card">
+      <h3>Rümeysa Çolak</h3>
+
+      <div class="contact-item"><strong>Uzmanlık</strong>Diş Hekimi</div>
+      <div class="contact-item"><strong>Telefon / WhatsApp</strong>0543 196 67 78</div>
+      <div class="contact-item"><strong>Adres</strong>Hacı Bayram Türkoğlu Blv. 1, 31600 Dörtyol/Hatay, Türkiye</div>
+      <div class="contact-item"><strong>Memnuniyet</strong>29 değerlendirme • 5 yıldız</div>
+
+      <br>
+      <a class="btn" target="_blank" href="https://wa.me/905431966778">WhatsApp ile İletişime Geç</a>
+    </div>
+
+    <iframe src="https://www.google.com/maps?q=Hac%C4%B1%20Bayram%20T%C3%BCrko%C4%9Flu%20Blv.%201%2C%2031600%20D%C3%B6rtyol%2FHatay%2C%20T%C3%BCrkiye&output=embed" loading="lazy"></iframe>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © 2026 Rümeysa Çolak Diş Hekimi. Tüm hakları saklıdır.
+</footer>
+
+<a class="whatsapp-fixed" target="_blank" href="https://wa.me/905431966778">☎</a>
+
+<script>
+  const form = document.getElementById("appointmentForm");
+
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const service = document.getElementById("service").value;
+    const date = document.getElementById("date").value;
+    const note = document.getElementById("note").value.trim();
+
+    const message =
+      "Merhaba, Rümeysa Çolak Diş Hekimi kliniğinizden randevu almak istiyorum.%0A%0A" +
+      "Ad Soyad: " + encodeURIComponent(name) + "%0A" +
+      "Telefon: " + encodeURIComponent(phone) + "%0A" +
+      "Hizmet: " + encodeURIComponent(service) + "%0A" +
+      "Tercih Edilen Tarih: " + encodeURIComponent(date) + "%0A" +
+      "Not: " + encodeURIComponent(note || "Belirtilmedi");
+
+    window.open("https://wa.me/905431966778?text=" + message, "_blank");
+  });
+</script>
+
 </body>
 </html>
